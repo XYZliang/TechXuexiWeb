@@ -4,6 +4,8 @@ notice = []
 $(document).ready(function () {
     phone = checkPhone()
     $("#loading").height($(document).height())
+    if(phone)
+        $("#qrNotice").innerText="也可以保存到相册或者截图后，用学习强国的扫一扫"
 })
 
 function checkPhone() {
@@ -21,7 +23,7 @@ function checkPhone() {
 
 function newNotices(msg, time, type) {
 // create the notification
-    while(notice.length > 0) {
+    while (notice.length > 0) {
         notice[0].dismiss()
         notice.shift()
     }
@@ -95,17 +97,6 @@ function get_app_jump_url(url) {
 
 }
 
-function makejump(jumpNode) {
-    newNotices("尝试打开学习强国app进行登录。如果打不开请使用扫码登录！");
-    if(phone) {
-        let url = jumpNode.firstChild.href
-        window.location.href = url
-    }
-    else{
-        newNotices("电脑请使用扫码登录！");
-    }
-}
-
 function refresh_msg(messages) {
     messages = to_arr(messages);
     $("#message tr:first").nextAll().remove();
@@ -120,8 +111,8 @@ function refresh_msg(messages) {
                 "</span>" +
                 "</td>" +
                 "<td>" +
-                '<button>' +
-                '<a target="_blank" onclick="Do(this,'+"'makeLoginJump'"+')"  style="text-align: center;color: red">' +
+                '<button style="width: 160px">' +
+                '<a target="_blank" onclick="Do(this,' + "'makeLoginJump'" + ')"  style="text-align: center;color: red;">' +
                 '💠👉🏻点这里登录' + "<br>" + '五分钟内有效👈️💠' +
                 '<a style="display:none" href="' +
                 get_app_jump_url(message.text) +
@@ -158,25 +149,27 @@ function openLoading() {
     /**
      * 禁用滚动条
      */
-    function unScroll(){
-        var top=$(document).scrollTop();
-        $(document).on('scroll.unable',function (e){
+    function unScroll() {
+        var top = $(document).scrollTop();
+        $(document).on('scroll.unable', function (e) {
             $(document).scrollTop(top);
         })
     }
+
     $("#loading").fadeIn();
     unScroll()
-    $(".loader").css("top",0.5*$(window).height()+$(document).scrollTop())
+    $(".loader").css("top", 0.5 * $(window).height() + $(document).scrollTop())
 }
 
-function closeLoading(){
+function closeLoading() {
     $("#loading").fadeOut();
     $(document).unbind("scroll.unable");
 }
 
-function Do(self,id){
-    const idCode=['makeLogin','makeFresh','makeLoginJump','makeLogout']
-    switch (id){
+function Do(self, id) {
+    const idCode = ['makeLogin', 'makeFresh', 'makeLoginJump', 'makeLogout']
+    openLoading()
+    switch (id) {
         case idCode[0]:
             add_user()
             newNotices("请求登录中！稍后请点击下方消息区域的登录按钮或者扫码登录！", defaultTime, 'warning');
@@ -187,6 +180,17 @@ function Do(self,id){
             newNotices("数据刷新中！", defaultTime, 'warning')
             break
         case idCode[2]:
-
+            if (phone) {
+                newNotices("尝试打开学习强国app进行登录。如果打不开或者打开空白请多试几次，还不行就使用下面的扫码登录！");
+                alert("尝试打开学习强国app进行登录。如果打不开或者打开空白请多试几次，还不行就使用下面的扫码登录！")
+                window.location.href = self.parentElement.children[1].href
+                console.log(self.parentElement.children[1].href)
+            } else {
+                newNotices("电脑请使用扫码登录！", defaultTime, 'error');
+            }
+            break
+        case idCode[3]:
+            remove_cookie(self)
+            break
     }
 }
