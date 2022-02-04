@@ -104,8 +104,8 @@ function get_app_jump_url(url) {
     if (url.indexOf('/') != -1) {
         url = encodeURIComponent(url);
     }
-    return 'dtxuexi://appclient/page/study_feeds?url=' + url;
-    // newNotices("尝试打开学习强国app进行登录。如果打不开请使用扫码登录！");
+    newNotices("尝试打开学习强国app进行登录。如果打不开请使用扫码登录！");
+    return url;
 
 }
 
