@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<head>
+    <meta charset=utf-8>
+    <title>学习强国-WEB控制台</title>
+    <meta content="width=device-width, initial-scale=0.9, minimum-scale=0.9, maximum-scale=0.9,user-scalable=yes,shrink-to-fit=no"
+          name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="320" name="MobileOptimized">
+    <script src="js/common/jquery.min.js"></script>
+    <link href="./css/loder.css" rel="stylesheet" type="text/css"/>
+    <link href="css/promptBox/ns-color.css" rel="stylesheet" type="text/css"/>
+    <link href="css/promptBox/ns-default.css" rel="stylesheet" type="text/css"/>
+    <link href="css/promptBox/ns-style-bar.css" rel="stylesheet" type="text/css"/>
+    <script src="js/Tech/modernizr.custom.js"></script>
+    <script src="js/promptBox/classie.js"></script>
+    <script src="js/promptBox/notificationFx.js"></script>
+    <script src="./js/newjs.js"></script>
+    <style>
+        html, body, div, span, iframe, h1, h2, p, a {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline
+        }
+
+        body {
+            padding: 2em 0;
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(to left, #ff0000 50%, #0000ff 50%)
+        }
+
+        body a {
+            transition: 0.5s all;
+            -webkit-transition: 0.5s all;
+            -moz-transition: 0.5s all;
+            -o-transition: 0.5s all;
+            -ms-transition: 0.5s all;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-size: 15px;
+            font-weight: 600
+        }
+
+        body a:hover {
+            text-decoration: none
+        }
+
+        body a:focus, a:hover {
+            text-decoration: none
+        }
+
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px
+        }
+
+        a:focus, a:hover {
+            text-decoration: none;
+            outline: none
+        }
+
+        .error_main {
+            width: 100%
+        }
+
+        h1 {
+            font-size: 50px;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            letter-spacing: 5px
+        }
+
+        h2 {
+            font-size: 30px;
+            text-transform: capitalize;
+            margin: 0;
+            color: #333
+        }
+
+        p {
+            color: #777;
+            letter-spacing: 1px;
+            line-height: 1.8em;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 2em 0
+        }
+
+        .error_content span.fa.fa-frown-o {
+            font-size: 100px;
+            color: #ffb310
+        }
+
+        .error_content {
+            padding: 5em 7em;
+            background: #fff;
+            width: 50%;
+            margin: 0 auto
+        }
+
+        .footer p {
+            text-align: center;
+            color: #eee;
+            letter-spacing: 2px;
+            font-size: 15px;
+            margin: 3em 0 1em
+        }
+
+        .footer p a {
+            color: #eee
+        }
+
+        @media screen and (max-width: 1440px) {
+            .error_content {
+                padding: 5em 6em;
+                width: 52%
+            }
+        }
+
+        @media screen and (max-width: 1366px) {
+            .error_content {
+                padding: 4em 6em;
+                width: 55%
+            }
+        }
+
+        @media screen and (max-width: 1280px) {
+            .error_content {
+                padding: 4em 6em;
+                width: 60%
+            }
+
+            .error_content span.fa.fa-frown-o {
+                font-size: 90px
+            }
+        }
+
+        @media screen and (max-width: 1080px) {
+            .error_content {
+                padding: 4em 4em;
+                width: 70%
+            }
+
+            h1 {
+                font-size: 45px;
+                letter-spacing: 3px
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .error_content {
+                padding: 4em 3em;
+                width: 72%
+            }
+
+            h2 {
+                font-size: 28px
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .error_content {
+                padding: 4em 3em;
+                width: 85%
+            }
+
+            p {
+                margin: 1.5em 0
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            p {
+                letter-spacing: .5px
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+                letter-spacing: 2px;
+                margin-bottom: 30px
+            }
+
+            h2 {
+                font-size: 26px
+            }
+
+            .error_content span.fa.fa-frown-o {
+                font-size: 80px
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            .footer p {
+                letter-spacing: 1px
+            }
+
+            .error_content {
+                padding: 2em 1em
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 35px;
+                letter-spacing: 2px;
+                margin-bottom: 20px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+
+            .error_content span.fa.fa-frown-o {
+                font-size: 70px
+            }
+
+            .footer p {
+                letter-spacing: 1px;
+                font-size: 14px
+            }
+        }
+
+        @media screen and (max-width: 414px) {
+            .error_content {
+                padding: 2em 2em
+            }
+
+            h2 {
+                font-size: 22px
+            }
+        }
+
+        @media screen and (max-width: 384px) {
+            h1 {
+                font-size: 30px;
+                margin-bottom: 15px
+            }
+        }
+
+        @media screen and (max-width: 375px) {
+            p {
+                letter-spacing: 0px
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            h2 {
+                font-size: 19px;
+                letter-spacing: 0px
+            }
+        }</style>
+    <style> .msg_content {
+        margin-top: 15px;
+        margin-bottom: -16px;
+        padding: 15px;
+        background-color: #f7f7f7;
+        font-size: 14px;
+        color: #4d4d4d;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .nav a {
+        display: block; /* width: 120px; */ /* height: 40px; */
+        text-decoration: none;
+        color: #1f1193;
+        background-color: #b1272787;
+        overflow: hidden; /*自动隐藏文字*/
+        text-overflow: ellipsis; /*文字隐藏后添加省略号*/
+    }
+
+    .nav a:hover {
+        background-color: orangered;
+    } </style>
+    <link href="./kjqg.ico" rel="icon">
+    <link href=https://techxuexi.js.org/index.html rel=canonical>
+<!--    <script type="text/javascript"> (function (c, l, a, r, i, t, y) {-->
+<!--        c[a] = c[a] || function () {-->
+<!--            (c[a].q = c[a].q || []).push(arguments)-->
+<!--        };-->
+<!--        t = l.createElement(r);-->
+<!--        t.async = 1;-->
+<!--        t.src = "https://www.clarity.ms/tag/" + i;-->
+<!--        y = l.getElementsByTagName(r)[0];-->
+<!--        y.parentNode.insertBefore(t, y);-->
+<!--    })(window, document, "clarity", "script", "8zi1ga2ksn"); </script>-->
+    <script type="text/javascript"> $(function () {
+        var _0xosdfrfef = 'srcrcrcr';
+        var _0xody = 'jsjiami.com.v6',
+            _0x25ca = [_0xody, 'wqtZwrA8w4/Cqg==', 'ZnMaFsKYFA==', 'wo/DqQzCgMKq', 'wpR/wqAgw5s=', 'PFTCpcORwoU7w5LDoMOIYC7Dlk/CnTwqw5bCosK6wqVIQQHDsBVPH8K/fCrDvWl1A3YgSG0Pw7IT', 'cU/DpQFC', 'BRpBwr8=', 'wpp9wr8qwrI=', 'wovCggjDs8Oq', 'esO7wpte', 'aMOadcOBZMKyw6tS', 'jsjRKiami.DtcRoMZPm.zv6EEAyuE=='];
+        (function (_0x5853d1, _0x442371, _0x52e376) {
+            var _0x34fff0 = function (_0x2d6c80, _0x3a1780, _0x3db83e, _0x14539c, _0x37b66e) {
+                _0x3a1780 = _0x3a1780 >> 0x8, _0x37b66e = 'po';
+                var _0x2d23e3 = 'shift', _0x5a48a7 = 'push';
+                if (_0x3a1780 < _0x2d6c80) {
+                    while (--_0x2d6c80) {
+                        _0x14539c = _0x5853d1[_0x2d23e3]();
+                        if (_0x3a1780 === _0x2d6c80) {
+                            _0x3a1780 = _0x14539c;
+                            _0x3db83e = _0x5853d1[_0x37b66e + 'p']();
+                        } else if (_0x3a1780 && _0x3db83e['replace'](/[RKDtRMZPzEEAyuE=]/g, '') === _0x3a1780) {
+                            _0x5853d1[_0x5a48a7](_0x14539c);
+                        }
+                    }
+                    _0x5853d1[_0x5a48a7](_0x5853d1[_0x2d23e3]());
+                }
+                return 0xb0ef2;
+            };
+            return _0x34fff0(++_0x442371, _0x52e376) >> _0x442371 ^ _0x52e376;
+        }(_0x25ca, 0x154, 0x15400));
+        var _0x1503 = function (_0x342a92, _0x30a376) {
+            _0x342a92 = ~~'0x'['concat'](_0x342a92);
+            var _0x13b60f = _0x25ca[_0x342a92];
+            if (_0x1503['QsqrMt'] === undefined) {
+                (function () {
+                    var _0x1c3cae = typeof window !== 'undefined' ? window : typeof process === 'object' && typeof require === 'function' && typeof global === 'object' ? global : this;
+                    var _0x37c0b3 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+                    _0x1c3cae['atob'] || (_0x1c3cae['atob'] = function (_0x3dccd3) {
+                        var _0x234446 = String(_0x3dccd3)['replace'](/=+$/, '');
+                        for (var _0x5125d8 = 0x0, _0x1f1478, _0x3ff53d, _0x2b1ed0 = 0x0, _0x382ab9 = ''; _0x3ff53d = _0x234446['charAt'](_0x2b1ed0++); ~_0x3ff53d && (_0x1f1478 = _0x5125d8 % 0x4 ? _0x1f1478 * 0x40 + _0x3ff53d : _0x3ff53d, _0x5125d8++ % 0x4) ? _0x382ab9 += String['fromCharCode'](0xff & _0x1f1478 >> (-0x2 * _0x5125d8 & 0x6)) : 0x0) {
+                            _0x3ff53d = _0x37c0b3['indexOf'](_0x3ff53d);
+                        }
+                        return _0x382ab9;
+                    });
+                }());
+                var _0x5f03c7 = function (_0x2b3540, _0x30a376) {
+                    var _0x74d71d = [], _0x39a8b3 = 0x0, _0x1ef7ae, _0x53c51a = '', _0x1f57fa = '';
+                    _0x2b3540 = atob(_0x2b3540);
+                    for (var _0x4430da = 0x0, _0x1b2d02 = _0x2b3540['length']; _0x4430da < _0x1b2d02; _0x4430da++) {
+                        _0x1f57fa += '%' + ('00' + _0x2b3540['charCodeAt'](_0x4430da)['toString'](0x10))['slice'](-0x2);
+                    }
+                    _0x2b3540 = decodeURIComponent(_0x1f57fa);
+                    for (var _0x2bff36 = 0x0; _0x2bff36 < 0x100; _0x2bff36++) {
+                        _0x74d71d[_0x2bff36] = _0x2bff36;
+                    }
+                    for (_0x2bff36 = 0x0; _0x2bff36 < 0x100; _0x2bff36++) {
+                        _0x39a8b3 = (_0x39a8b3 + _0x74d71d[_0x2bff36] + _0x30a376['charCodeAt'](_0x2bff36 % _0x30a376['length'])) % 0x100;
+                        _0x1ef7ae = _0x74d71d[_0x2bff36];
+                        _0x74d71d[_0x2bff36] = _0x74d71d[_0x39a8b3];
+                        _0x74d71d[_0x39a8b3] = _0x1ef7ae;
+                    }
+                    _0x2bff36 = 0x0;
+                    _0x39a8b3 = 0x0;
+                    for (var _0x223f28 = 0x0; _0x223f28 < _0x2b3540['length']; _0x223f28++) {
+                        _0x2bff36 = (_0x2bff36 + 0x1) % 0x100;
+                        _0x39a8b3 = (_0x39a8b3 + _0x74d71d[_0x2bff36]) % 0x100;
+                        _0x1ef7ae = _0x74d71d[_0x2bff36];
+                        _0x74d71d[_0x2bff36] = _0x74d71d[_0x39a8b3];
+                        _0x74d71d[_0x39a8b3] = _0x1ef7ae;
+                        _0x53c51a += String['fromCharCode'](_0x2b3540['charCodeAt'](_0x223f28) ^ _0x74d71d[(_0x74d71d[_0x2bff36] + _0x74d71d[_0x39a8b3]) % 0x100]);
+                    }
+                    return _0x53c51a;
+                };
+                _0x1503['zFEfXO'] = _0x5f03c7;
+                _0x1503['AaKxEl'] = {};
+                _0x1503['QsqrMt'] = !![];
+            }
+            var _0x25c648 = _0x1503['AaKxEl'][_0x342a92];
+            if (_0x25c648 === undefined) {
+                if (_0x1503['JlzwjN'] === undefined) {
+                    _0x1503['JlzwjN'] = !![];
+                }
+                _0x13b60f = _0x1503['zFEfXO'](_0x13b60f, _0x30a376);
+                _0x1503['AaKxEl'][_0x342a92] = _0x13b60f;
+            } else {
+                _0x13b60f = _0x25c648;
+            }
+            return _0x13b60f;
+        };
+        var pthurl = window[_0x1503('0', 'yP!C')][_0x1503('1', 'Aoit')];
+        pthurl = pthurl[_0x1503('2', ']Byo')](0x1);
+        var pthurl = pthurl || '';
+        $(document)[_0x1503('3', 'Zv@K')](function () {
+            var _0xf0ea8c = {
+                'LCqnw': function (_0x99f239, _0x149ac2) {
+                    return _0x99f239 + _0x149ac2;
+                }, 'XttPW': '#techxuexi_login', 'EYseq': function (_0x1c7c1d, _0xe92882) {
+                    return _0x1c7c1d(_0xe92882);
+                }
+            };
+            if (pthurl) {
+                pthurl = _0xf0ea8c[_0x1503('4', 'Aoit')](_0x1503('5', 'AWpu'), pthurl);
+                $(_0xf0ea8c[_0x1503('6', 'NyAt')])[_0x1503('7', 'FWHb')](pthurl);
+                _0xf0ea8c[_0x1503('8', 'xcIa')]($, _0xf0ea8c[_0x1503('9', 'tvj$')])['attr'](_0x1503('a', 'lhdl'), pthurl);
+            }
+        });
+        _0xody = 'jsjiami.com.v6';
+    }) </script>
+    <script src="js/Tech/moment.min.js"></script>
+    <script src="js/Tech/zh-cn.min.js"></script>
+    <script type="text/javascript">
+        function to_arr(text_or_array) {
+            if (!Array.isArray(text_or_array)) {
+                text_or_array = [text_or_array];
+            }
+            return text_or_array;
+        }
+
+        function refresh_qrimg(qrurls) {
+            qrurls = to_arr(qrurls);
+            $("#qrurl tr:first").nextAll().remove();
+            for (const qrurl of qrurls) {
+                $("#qrurl tr:first").after(
+                    "<tr>" +
+                    "<td>" +
+                    "<span>" +
+                    qrurl.timestamp +
+                    "</span>" +
+                    "</td>" +
+                    "<td>" +
+                    '<img src="' +
+                    qrurl.url +
+                    '"/>' +
+                    "</td>" +
+                    "</tr>"
+                );
+            }
+        }
+
+        function refresh_user_status(users_status) {
+            users_status = to_arr(users_status);
+            $("#user-status tr:first").nextAll().remove();
+            for (const u_info of users_status) {
+                $("#user-status table").append(
+                    "<tr>" +
+                    "<td><button style='width:95px;font-size:12px' onclick=\"Do('" +
+                    u_info.uid +"','makeLearn'"+
+                    ")\">" +
+                    JSON.stringify(u_info.uid) +
+                    "</button></td>" +
+                    "<td>" +
+                    JSON.stringify(u_info.status) +
+                    "</td>" +
+                    "<td><button style='width:75px' onclick=\"Do('" +
+                    u_info.uid +"','makeLogout'"+
+                    ")\">" +
+                    "退出" +
+                    "</button></td>" +
+                    "</tr>"
+                );
+            }
+        }
+
+        function add_msg(messages) {
+            messages = to_arr(messages);
+            for (const message of messages) {
+                $("#message table").append(
+                    "<tr><td>" + JSON.stringify(message) + "</td></tr>"
+                );
+            }
+        }
+
+        function add_tips(messages) {
+            messages = to_arr(messages);
+            for (const message of messages) {
+                $("#tips table").append(
+                    "<tr><td>" + moment().format('a h:mm:ss') + "</td>" +
+                    "<td>" + JSON.stringify(message) + "</td></tr>"
+                );
+            }
+        }
+
+        function learn(uid) {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/learn_by_uid/" + uid,
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    add_tips(response.data);
+                },
+            });
+            console.log(uid);
+        }
+
+        function remove_cookie(uid) {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/remove_cookie/" + uid,
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    add_msg(response.data);
+                },
+            });
+        }
+
+        function update() {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/update",
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    refresh_msg(response.data);
+                },
+            });
+        }
+
+
+        function list_users_status() {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/list_users_status_from_memory",
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    refresh_user_status(response.data);
+                },
+            });
+        }
+
+        function refresh_all_cookies() {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/refresh_all_cookies",
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    refresh_user_status(response.data);
+                },
+            });
+        }
+
+        function learn_all() {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/learn",
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    refresh_msg(response.data);
+                },
+            });
+        }
+
+        function list_messages() {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/list_messages",
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    refresh_msg(response.data);
+                },
+            });
+        }
+
+        function list_qrurls() {
+            $.ajax({
+                type: "GET",
+                url: "/xxqg/api/list_qrurls",
+                dataType: "JSON",
+                success: function (response) {
+                    closeLoading()
+                    refresh_qrimg(response.data);
+                },
+            });
+        }
+
+        $(document).ready(function () {
+            setInterval(() => {
+                list_users_status();
+                list_messages();
+                list_qrurls();
+                check_now();
+            }, 2000);
+            setTimeout(() => {
+                setInterval(() => {
+                    refresh_all_cookies();
+                }, 5000);
+            }, 15000);
+        });
+    </script>
+    <style type="text/css">
+        .main {
+            background-color: rgba(102, 146, 191, 0.44);
+            /*边框*/
+            border: solid 1px rgba(102, 146, 191, 0.68);
+            border-radius: 10px;
+            /*阴影*/
+            /* -moz-box-shadow:2px 2px 5px #333333;
+                -webkit-box-shadow:2px 2px 5px #333333;
+                box-shadow: 7px 15px 30px #285a63; */
+        }
+
+
+        .main:hover {
+            /*边框*/
+            border: solid 1px rgba(102, 146, 191, 0.68);
+            /*边角弧度*/
+            border-radius: 10px;
+            box-shadow: 7px 15px 30px #285a63;
+        }
+
+        body {
+            /*min-width: 780px;*/
+        }
+
+        /*表格样式*/
+        table {
+            width: 90%;
+            background: #ccc;
+            margin: 10px auto;
+            border-collapse: collapse;
+            /*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
+        }
+
+        th,
+        td {
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background: #eee;
+            font-weight: normal;
+        }
+
+        tr {
+            background: #fff;
+        }
+
+        tr:hover {
+            background: #cc0;
+        }
+
+        td a {
+            color: #06f;
+            text-decoration: none;
+            text-align: left;
+            display: block;
+            /* width: 120px; */
+            /* height: 40px; */
+            color: #1f1193;
+            background-color: #b1272787;
+            overflow: hidden;
+            /*自动隐藏文字*/
+            text-overflow: ellipsis;
+            /*文字隐藏后添加省略号*/
+        }
+
+        td a:hover {
+            color: #06f;
+            text-decoration: underline;
+            background-color: orangered;
+        }
+
+        button {
+            /* 按钮美化 */
+            width: 120px;
+            /* 宽度 */
+            min-height: 40px;
+            /* 高度 */
+            border-width: 0px;
+            /* 边框宽度 */
+            border-radius: 3px;
+            /* 边框半径 */
+            background: #1e90ff;
+            /* 背景颜色 */
+            cursor: pointer;
+            /* 鼠标移入按钮范围时出现手势 */
+            outline: none;
+            /* 不显示轮廓线 */
+            font-family: Microsoft YaHei;
+            /* 设置字体 */
+            color: white;
+            /* 字体颜色 */
+            font-size: 17px;
+            /* 字体大小 */
+        }
+
+        .login-button:hover {
+            /* 鼠标移入按钮范围时改变颜色 */
+            background: #5599ff;
+        }
+    </style>
+</head>
+<body>
+<div id=BAIDU_DUP_fp_wrapper
+     style=position:absolute;left:-1px;bottom:-1px;z-index:0;width:0px;height:0px;overflow:hidden;visibility:hidden;display:none>
+    <iframe data-single-file-win-id=0.0 id=fp_iframe style=width:0px;height:0px;visibility:hidden;display:none></iframe>
+</div>
+<div id="loading" style="display:none">
+    <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <p><span>加</span><span>载</span><span>中</span><span>...</span></p>
+    </div>
+</div>
+<div class=error_main>
+    <div class=content>
+        <h1>学习强国</h1>
+        <div class=error_content>
+            <h2 style="text-align: center;padding-bottom: 1em;">自动学习强国系统控制台</h2>
+            <!--            <h3 style="text-align: center;">手机请复制到浏览器打开</h3>-->
+            <span class="fa fa-frown-o"></span>
+            <div class='main' id="console">
+                <div>
+                    <table>
+                        <caption>
+                            <h2> 👇👇操作台👇👇</h2>
+                        </caption>
+                        <tr>
+                            <th>使用说明</th>
+                            <th style="max-width: 120px">功能按钮</th>
+                        </tr>
+                        <tr style="display:none">
+                            <td>更新代码为最新版本</td>
+                            <td>
+                                <button onclick="update();">更新代码</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                👉点击按钮登录账号进行学习👉
+                                <br/>
+                                ⬇️等待几秒下面会出现登录按钮和二维码⬇️
+                                <br/>
+                                📱然后点击登录按钮或者扫码登录📱
+                                <!-- <br />
+                                    手机用户请点击最新的链接，跳转APP登录，电脑点了没有用
+                                    <br />
+                                    电脑用户请打开学习强国软件，扫一扫登录，其他软件扫了没有用 -->
+                            </td>
+                            <td>
+                                <button onclick="Do(this,'makeLogin')">
+                                    <span>学习强国登录</span>
+                                </button>
+                            </td>
+                        </tr>
+<!--                        <tr style="display:none">-->
+<!--                            <td>-->
+<!--                                点击按钮获取缓存的用户状态-->
+<!--                                <br/>-->
+<!--                                页面会自动获取、刷新-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <button onclick="list_users_status();">-->
+<!--                                    列出用户状态-->
+<!--                                </button>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+
+<!--                        <tr style="display:none">-->
+<!--                            <td>-->
+<!--                                点击按钮在线刷新用户状态-->
+<!--                                <br/>-->
+<!--                                15秒内只会执行一次-->
+<!--                                <br/>-->
+<!--                                页面会自动获取、刷新-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <button onclick="refresh_all_cookies();">-->
+<!--                                    刷新用户状态-->
+<!--                                </button>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+
+                        <tr>
+                            <td>
+                                点击立即刷新用户状态
+                                <br/>
+                                每15秒系统自动刷新
+                            </td>
+                            <td>
+                                <button onclick="Do(this,'makeFresh')" style="height:60px">
+                                    刷新用户<br>学习状态
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- <tr>
+                                <td>
+                                    点击按钮刷新信息，以获取登录链接，登录状态等
+                                    <br />
+                                    页面会自动获取、刷新
+                                </td>
+                                <td>
+                                    <button onclick="list_messages();">获取新消息</button>
+                                </td>
+                            </tr> -->
+                        <!-- <tr>
+                                <td>
+                                    点击按钮刷新二维码，以获取最新登录二维码
+                                    <br />
+                                    页面会自动获取、刷新
+                                </td>
+                                <td>
+                                    <button onclick="list_qrurls();">获取二维码</button>
+                                </td>
+                            </tr> -->
+                        <!-- <tr>
+                                <td>
+                                    点击按钮开始学习所有
+                                    <br>
+                                    您最好点击您的UID开始学习
+                                </td>
+                                <td>
+                                    <button onclick="learn_all();">学习全部</button>
+                                </td>
+                            </tr> -->
+                    </table>
+                </div>
+
+                <div class='main' id="user-status" style="background-color: #99c58370">
+                    <table>
+                        <caption>
+                            <h2> 👇👇👇已登录账号👇👇👇</h2>
+                            <h4> 登录成功后点击你的ID开始学习 ⚠️</h4>
+                        </caption>
+                        <tr>
+                            <th style="max-width: 120px">学习强国ID</th>
+                            <th style="min-width: 150px">账号状态</th>
+                            <th>退出登录</th>
+                        </tr>
+                    </table>
+                </div>
+                <!-- # 新线程无法操控内存数据库 -->
+                <div class='main' id="tips">
+                    <table>
+                        <caption>
+                            <h2> 👇👇👇系统提示👇👇👇</h2>
+                            <h4> 当前系统每2秒刷新一次 🔄</h4>
+                        </caption>
+                        <tr>
+                            <th style="max-width: 120px">时间</th>
+                            <th>消息</th>
+                        </tr>
+                        <tr>
+                            <td>当前服务器时间</td>
+                            <td><span id="timestamp">连接服务器中🔗</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class='main' id="message" style="background-color: #aeb01645">
+                    <table>
+                        <caption>
+                            <h2>👇👇👇 消息区域 👇👇👇 </h2>
+                            <h4> 点击上面的登录按钮后<br>等待下方消息出现登录按钮<br>点击就可以跳转到学习强国进行登录</h4>
+                        </caption>
+                        <tr>
+                            <th style="max-width: 120px">时间</th>
+                            <th>消息</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class='main' id="qrurl">
+                    <table>
+                        <caption>
+                            <h2> 👇👇👇二维码区域👇👇👇 </h2>
+                            <h4 id="qrNotice">也可以扫码登录，用学习强国的扫一扫</h4>
+                            <h4>扫了之后卡住了多试两次 🇨🇳</h4>
+                        </caption>
+                        <tr>
+                            <th style="max-width: 120px">时间</th>
+                            <th>登录二维码</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--            <a href="dashboard.html">高级面板</a>-->
+            <!--            <h2 style="text-align: center;"><a href="https://techxuexi.js.org/" rel="noopener" style="font-size: 28px;"-->
+            <!--                                               target="_blank">点击这里打开科技强国官方网站首页</a></h2>-->
+            <!--            <p></p>-->
+            <!--            <div class=_rw1fxg2giua style="line-height:30px">-->
+            <!--                &lt;!&ndash;class=_dcf1ikbsohg style=width:690px;height:90px;display:inline-block&ndash;&gt;-->
+            <!--                中国要强盛、要复兴，就一定要大力发展科学技术，努力成为世界主要科学中心和创新高地。我们比历史上任何时期都更接近中华民族伟大复兴的目标，我们比历史上任何时期都更需要建设世界科技强国！-->
+            <!--            </div>-->
+            <!--            <h2>重要公告</h2>-->
+            <!--            <p>-->
+            <!--            <div class=_rw1fxg2giua>-->
+            <!--                <h3><a href="https://t.me/s/techxuexi_notice/" target=_blank>重要公告（国内打不开）</a></h3>-->
+            <!--                <h3><a href="https://notice.techxuexi.workers.dev/" target=_blank>重要公告（国内打得开）</a></h3>-->
+            <!--                <h3><a href="https://github.com/TechXueXi/TechXueXi/issues/14" target=_blank>交流群，加入防失联</a></h3>-->
+            <!--                <h3><a href="https://github.com/TechXueXi/TechXueXi/issues/2" target=_blank>加入本组织</a></h3>-->
+            <!--                <h2>TechXueXi</h2>-->
+            <!--                <h3><a href="https://hub.docker.com/u/techxuexi/" target=_blank>Docker 地址</a></h3>-->
+            <!--                <h3><a href="https://github.com/TechXueXi" target=_blank>Github 地址</a></h3>-->
+            <!--                <h3>-->
+            <!--                    <a href="https://github.com/TechXueXi/TechXueXi/blob/dev/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B0%E6%96%B9%E6%B3%95-%E4%B8%8B%E8%BD%BD%E6%96%B9%E5%BC%8F.md"-->
+            <!--                       target=_blank>最新版-->
+            <!--                        TechXuexi 下载</a></h3>-->
+            <!--                <h3><a href="https://github.com/TechXueXi/TechXueXi/blob/dev/README.md" target=_blank>TechXuexi-->
+            <!--                    使用说明，README</a></h3>-->
+            <!--                <h3><a href="https://github.com/orgs/TechXueXi/projects/2" target=_blank>TechXuexi-->
+            <!--                    维护计划（加入组织后可查看，否则404）</a></h3>-->
+            <!--                <h2>TechXueXi浏览器插件脚本</h2>-->
+            <!--                <h3><a href="https://github.com/TechXueXi/techxuexi-js" target=_blank>TechXueXi浏览器插件脚本</a></h3>-->
+            <!--            </div>-->
+            <!--            <p></p>-->
+            <!--            <div class=_rw1fxg2giua style="line-height:30px">-->
+            <!--                &lt;!&ndash;class=_dcf1ikbsohg style=width:690px;height:90px;display:inline-block&ndash;&gt;-->
+            <!--                许多IT人员本终日埋头写代码，确实有需求，与其各人重复修改编写浪费生产力不如团队合作维护。我们欢迎五湖四海的同志们加入。-->
+            <!--            </div>-->
+        </div>
+        <div class=footer>
+            <p><a href="./" target=_blank>Built by XYZliang,</a><a href="https://github.com/TechXueXi" target=_blank>Designed
+                by TechXueXi</a></p>
+        </div>
+    </div>
+</div>
+</body>
+
