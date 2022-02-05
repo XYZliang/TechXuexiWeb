@@ -128,9 +128,9 @@
         classie.add(this.ntf, 'ns-show');
         this.options.onOpen();
         let self = this
-        this.disReady = setTimeout(function(){
+        this.disReady = setTimeout(function () {
             self.options.onReady()
-        },2000)
+        }, 2000)
     }
 
     /**

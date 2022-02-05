@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>科技强 guo - Dashboard</title>
-        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
         <script type="text/javascript">
             function to_arr(text_or_array) {
                 if (!Array.isArray(text_or_array)) {
@@ -125,7 +125,7 @@
             function learn(uid) {
                 $.ajax({
                     type: "GET",
-                    url: "/api/learn_by_uid/" + uid,
+                    url: "/xxqg/api/learn_by_uid/" + uid,
                     dataType: "JSON",
                     success: function (response) {
                         add_tips(response.data);
@@ -136,7 +136,7 @@
             function remove_cookie(uid) {
                 $.ajax({
                     type: "GET",
-                    url: "/api/remove_cookie/" + uid,
+                    url: "/xxqg/api/remove_cookie/" + uid,
                     dataType: "JSON",
                     success: function (response) {
                         add_msg(response.data);
@@ -146,7 +146,7 @@
             function update() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/update",
+                    url: "/xxqg/api/update",
                     dataType: "JSON",
                     success: function (response) {
                         refresh_msg(response.data);
@@ -157,7 +157,7 @@
             function add_user() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/add",
+                    url: "/xxqg/api/add",
                     dataType: "JSON",
                     success: function (response) {
                         add_tips(response.data);
@@ -167,7 +167,7 @@
             function check_now() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/now",
+                    url: "/xxqg/api/now",
                     dataType: "JSON",
                     success: function (response) {
                         $("#timestamp").text("服务器时间: " + response.data);
@@ -177,7 +177,7 @@
             function list_users_status() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/list_users_status_from_memory",
+                    url: "/xxqg/api/list_users_status_from_memory",
                     dataType: "JSON",
                     success: function (response) {
                         refresh_user_status(response.data);
@@ -187,7 +187,7 @@
             function refresh_all_cookies() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/refresh_all_cookies",
+                    url: "/xxqg/api/refresh_all_cookies",
                     dataType: "JSON",
                     success: function (response) {
                         refresh_user_status(response.data);
@@ -197,7 +197,7 @@
             function force_refresh_all_cookies() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/force_refresh_all_cookies",
+                    url: "/xxqg/api/force_refresh_all_cookies",
                     dataType: "JSON",
                     success: function (response) {
                         add_tips('强制刷新用户状态!!!')
@@ -208,7 +208,7 @@
             function learn_all() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/learn",
+                    url: "/xxqg/api/learn",
                     dataType: "JSON",
                     success: function (response) {
                         refresh_msg(response.data);
@@ -219,7 +219,7 @@
             function list_messages() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/list_messages",
+                    url: "/xxqg/api/list_messages",
                     dataType: "JSON",
                     success: function (response) {
                         refresh_msg(response.data);
@@ -229,7 +229,7 @@
             function list_qrurls() {
                 $.ajax({
                     type: "GET",
-                    url: "/api/list_qrurls",
+                    url: "/xxqg/api/list_qrurls",
                     dataType: "JSON",
                     success: function (response) {
                         refresh_qrimg(response.data);
