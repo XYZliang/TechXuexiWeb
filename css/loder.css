@@ -1,6 +1,6 @@
 body {
-    padding: 0!important;
-    margin: 0!important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .error_main {
@@ -8,90 +8,106 @@ body {
 }
 
 .ns-effect-exploader p {
-    padding: 0.25em 10% 0.25em 5%!important;
+    padding: 0.25em 10% 0.25em 5% !important;
 }
 
-#loading{
-    width:100%;
-    height:100%;
+#loading {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
+
 .loader {
     width: 80px;
     height: 120px;
     left: 50%;
     position: relative;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
+
 .loader .dot {
-    left:36%;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:white;
-    transform-origin:10px 40px;
-    position:absolute;
-    animation:dotrotate 2s infinite;
+    left: 36%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    transform-origin: 10px 40px;
+    position: absolute;
+    animation: dotrotate 2s infinite;
 }
+
 .loader .dot:nth-of-type(2) {
-    animation-delay:0.2s;
+    animation-delay: 0.2s;
 }
+
 .loader .dot:nth-of-type(3) {
-    animation-delay:0.3s;
+    animation-delay: 0.3s;
 }
+
 .loader .dot:nth-of-type(4) {
-    animation-delay:0.4s;
+    animation-delay: 0.4s;
 }
+
 .loader .dot:nth-of-type(5) {
-    animation-delay:0.5s;
+    animation-delay: 0.5s;
 }
+
 .loader .dot:nth-of-type(6) {
-    animation-delay:0.6s;
+    animation-delay: 0.6s;
 }
+
 .loader .dot:last-of-type {
-    animation-delay:0.7s;
+    animation-delay: 0.7s;
 }
+
 @keyframes dotrotate {
     0% {
-        transform:rotate(0deg);
-        width:10px;
-        height:10px
+        transform: rotate(0deg);
+        width: 10px;
+        height: 10px
     }
     100% {
-        transform:rotate(360deg);
-        width:15px;
-        height:15px
+        transform: rotate(360deg);
+        width: 15px;
+        height: 15px
     }
-}.loader p {
-     position:absolute;
-     bottom:0;
-     text-align:center;
-     width:100%
- }
+}
+
+.loader p {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%
+}
+
 .loader p span {
-    font-size:10px;
-    color:white;
-    animation:fontSize 2s infinite
+    font-size: 10px;
+    color: white;
+    animation: fontSize 2s infinite
 }
+
 .loader p span:nth-of-type(2) {
-    animation-delay:0.2s
+    animation-delay: 0.2s
 }
+
 .loader p span:nth-of-type(3) {
-    animation-delay:0.4s
+    animation-delay: 0.4s
 }
+
 .loader p span:last-of-type {
-    animation-delay:0.6s
+    animation-delay: 0.6s
 }
+
 @keyframes fontSize {
     0% {
-        font-size:10px
+        font-size: 10px
     }
     50% {
-        font-size:15px
+        font-size: 15px
     }
     100% {
-        font-size:10px
+        font-size: 10px
     }
 }

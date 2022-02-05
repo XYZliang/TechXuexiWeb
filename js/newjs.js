@@ -5,6 +5,7 @@ notice = []
 $(document).ready(function () {
     add_tips("数据自动刷新中,请勿长期打开此页面");
     add_tips("点击ID开始学习后即可关闭网页，系统会在后台自动学习");
+    Do(this, 'makeFresh')
     phone = checkPhone()
     $("#loading").height($(document).height() * 2)
     if (phone)
@@ -104,7 +105,6 @@ function get_app_jump_url(url) {
     if (url.indexOf('/') != -1) {
         url = encodeURIComponent(url);
     }
-    newNotices("尝试打开学习强国app进行登录。如果打不开请使用扫码登录！");
     return url;
 
 }
@@ -138,7 +138,7 @@ function refresh_msg(messages) {
             let mes = message.text
             if (mes === "\u8bf7\u767b\u5f55\uff08\u767b\u5f55\u65b9\u5f0f\u8bf7\u4ed4\u7ec6\u9605\u8bfb\u6587\u6863\uff0c\u5982\u679c\u89c9\u5f97\u8fd9\u662f\u8ba9\u4f60\u4e0b\u8f7d\uff0c\u5c31\u662f\u4f60\u6ca1\u4ed4\u7ec6\u8bfb\u6587\u6863\uff09\uff1a")
                 mes = "\u8bf7\u767b\u5f55"
-            else if(mes === "\"ヾ(o◕∀◕)ﾉヾ☆登录成功，手动点击UID开始学习★ヾ(≧O≦)〃嗷~\"")
+            else if (mes === "\"ヾ(o◕∀◕)ﾉヾ☆登录成功，手动点击UID开始学习★ヾ(≧O≦)〃嗷~\"")
                 mes = "登录成功，点击你的ID开始自动学习哦嗷~"
             $("#message table tr:first").after(
                 "<tr>" +
@@ -180,8 +180,30 @@ function closeLoading() {
     $(document).unbind("scroll.unable");
 }
 
+//创建a标签，设置属性，点击
+function jump_href(url) {
+    //防止反复添加
+    if (document.getElementById('jump_a')) {
+        document.body.removeChild(document.getElementById('jump_a'));
+    }
+    if (url.indexOf("httpurl") !== 0) {
+        if (url.indexOf("https%253A%252F%252F") !== 0 || url.indexOf("https%3A%2F%2F") !== 0) {
+            url = 'dtxuexi://appclient/page/study_feeds?url=' + decodeURI(url.slice(url.indexOf('urlhttp') + 'url'.length))
+        }
+    }
+    var a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('id', 'jump_a');
+    a.style.display = 'none';
+
+    document.body.appendChild(a);
+    a.click();
+}
+
+
 function Do(self, id) {
-    const idCode = ['makeLogin', 'makeFresh', 'makeLoginJump', 'makeLogout','makeLearn']
+    const idCode = ['makeLogin', 'makeFresh', 'makeLoginJump', 'makeLogout', 'makeLearn']
     openLoading()
     switch (id) {
         case idCode[0]:
@@ -198,9 +220,8 @@ function Do(self, id) {
                 if (!QWechat) {
                     newNotices("尝试打开学习强国app进行登录。如果打不开或者打开空白请多试几次，还不行就使用下面的扫码登录！");
                     alert("尝试打开学习强国app进行登录。如果打不开或者打开空白请多试几次，还不行就使用下面的扫码登录！")
-                    window.location.href = self.parentElement.children[1].href
-                }
-                else{
+                    jump_href(self.parentElement.children[1].href)
+                } else {
                     newNotices("请在浏览器中打开才能进行跳转，否则请使用二维码登录！")
                     alert("请在浏览器中打开才能进行跳转，否则请使用二维码登录！")
                 }
@@ -209,10 +230,10 @@ function Do(self, id) {
             }
             break
         case idCode[3]:
-            newNotices("退出成功！系统已退出账号，即将刷新",defaultTime,"warning");
+            newNotices("退出成功！系统已退出账号，即将刷新", defaultTime, "warning");
             setTimeout(function () {
                 location.reload();
-            },6000)
+            }, 6000)
             break
         case idCode[4]:
             learn(self)
